@@ -2,6 +2,7 @@
 @import url(./Home.module.css);
 @import url(./Sidebar.module.css);
 @import url(./Topbar.module.css);
+@import url(./Notas.module.css);
 
 html,
 body {

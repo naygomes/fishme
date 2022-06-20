@@ -3,6 +3,6 @@ import Layout from '../components/Layout';
 
 export default function RelatorioFornecedor() {
     return (
-        <Layout>Relatório ao Fornecedor</Layout>
+        <Layout title="Relatório ao Fornecedor">Relatório ao Fornecedor</Layout>
     )
 }

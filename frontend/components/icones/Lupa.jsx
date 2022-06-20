@@ -14,12 +14,12 @@ export default function Lupa({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="6.5" cy="6.5" r="5.75" stroke={fill} stroke-width="1.5" />
+      <circle cx="6.5" cy="6.5" r="5.75" stroke={fill} strokeWidth="1.5" />
       <path
         d="M11 11L15 15"
         stroke={fill}
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
     </svg>
   );
