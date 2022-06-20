@@ -1,0 +1,12 @@
+.icons-border {
+    border-right: 1px solid #DFE0EB;
+}
+
+.user-name,
+.page-title {
+    font-weight: bold;
+}
+
+.user-name {
+    font-size: 0.88rem;
+}
