@@ -6,3 +6,5 @@ export { default as Livro } from "./Livro";
 export { default as Nota } from "./Nota";
 export { default as Pessoas } from "./Pessoas";
 export { default as Ticket } from "./Ticket";
+export { default as Lupa } from "./Lupa";
+export { default as Sino } from "./Sino";
