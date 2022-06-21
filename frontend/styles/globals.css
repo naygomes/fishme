@@ -2,13 +2,13 @@
 
 /* Páginas */
 @import url(./Home.module.css);
-@import url(./Notas.module.css);
 
 /* Componentes */
 @import url(./Sidebar.module.css);
 @import url(./Topbar.module.css);
 @import url(./Input.module.css);
 @import url(./Chip.module.css);
+@import url(./TabelaProdutos.css);
 
 html,
 body {
@@ -27,4 +27,8 @@ a {
 * {
   box-sizing: border-box;
   font-family: 'Mulish', sans-serif;
+}
+
+table {
+  font-size: 0.9rem;
 }

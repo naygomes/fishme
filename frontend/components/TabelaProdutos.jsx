@@ -19,14 +19,14 @@ export default function TabelaProdutos({ listaProdutos = [] }) {
             </td>
           </tr>
           <tr>
-            <td className="col-3 fw-bold notas-subtable-label">
+            <td className="col-3 fw-bold subtable-label">
               {"Quantidade (Kg)"}
             </td>
-            <td className="col-3 fw-bold notas-subtable-label">{"Espécie"}</td>
-            <td className="col-3 fw-bold notas-subtable-label">
+            <td className="col-3 fw-bold subtable-label">{"Espécie"}</td>
+            <td className="col-3 fw-bold subtable-label">
               {"Preço Unitário (R$)"}
             </td>
-            <td className="col-3 fw-bold notas-subtable-label">
+            <td className="col-3 fw-bold subtable-label">
               {"Preço Total (R$)"}
             </td>
           </tr>
