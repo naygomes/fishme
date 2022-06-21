@@ -13,7 +13,7 @@ import {
   Nota,
 } from "./icones";
 
-const Sidebar = () => {
+const Sidebar = ({ classExtra }) => {
   const [menuItens, setMenuItens] = useState({
     1: {
       id: 1,
@@ -86,7 +86,9 @@ const Sidebar = () => {
     setMenuItens(menu);
   };
   return (
-    <div className="size pt-5 pb-4 bg-dark d-flex flex-column justify-content-start">
+    <div
+      className={`size pt-5 pb-4 bg-dark d-flex flex-column justify-content-start position-fixed overflow-auto col-2`}
+    >
       <div className="px-4 d-flex align-items-center pl-1 gap-3">
         <Logo size={32} />
         <span className="logo-text">Fishme</span>

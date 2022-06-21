@@ -3,5 +3,5 @@ import styles from '../styles/Home.module.css'
 import Layout from "../components/Layout";
 
 export default function VisaoGeral() {
-  return <Layout>Visão Geral</Layout>;
+  return <Layout title="Visão Geral">Visão Geral</Layout>;
 }

@@ -3,6 +3,6 @@ import Layout from '../components/Layout';
 
 export default function Cobranca() {
     return (
-        <Layout>Cobranças</Layout>
+        <Layout title="Cobranças">Cobranças</Layout>
     )
 }

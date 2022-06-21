@@ -3,6 +3,6 @@ import Layout from '../components/Layout';
 
 export default function RegistrarPagamento() {
     return (
-        <Layout>Registrar Pagamento ao Fornecedor</Layout>
+        <Layout title="Registrar Pagamento ao Fornecedor">Registrar Pagamento ao Fornecedor</Layout>
     )
 }
