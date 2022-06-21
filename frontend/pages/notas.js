@@ -1,32 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import Botao from '../components/Botao';
 import Input from '../components/Input';
 import Chip from '../components/Chip';
 import TabelaProdutos from '../components/TabelaProdutos';
 
-const listaProdutos = [
-    {
-        id: 1,
-        quantidade: 14,
-        especie: 'Corvina',
-        precoUnit: 15,
-    },
-    {
-        id: 2,
-        quantidade: 14,
-        especie: 'Corvina',
-        precoUnit: 15,
-    },
-    {
-        id: 3,
-        quantidade: 14,
-        especie: 'Corvina',
-        precoUnit: 15,
-    },
-]
+const somarProdutos = (array) => {
+    let resultado = 0;
+    array.forEach((element) => {
+        resultado += element.quantidade * element.precoUnit;
+    });
+    return resultado;
+};
+
+const resultado = {
+    cliente: 'Joãozinho',
+    data: '12/01/2019',
+    numeroPedido: '00000000.01',
+    estaPago: false,
+    listaProdutos: [
+        {
+            id: 1,
+            quantidade: 14,
+            especie: 'Corvina',
+            precoUnit: 15,
+        },
+        {
+            id: 2,
+            quantidade: 14,
+            especie: 'Corvina',
+            precoUnit: 15,
+        },
+        {
+            id: 3,
+            quantidade: 14,
+            especie: 'Corvina',
+            precoUnit: 15,
+        },
+    ],
+}
 
 export default function Notas() {
+    const [totalProdutos, setTotalProdutos] = useState(0);
+
+    useEffect(() => {
+        setTotalProdutos(somarProdutos(resultado.listaProdutos))
+    }, [])
+
     return (
         <Layout title="Notas">
             <div className='notas d-flex flex-column justify-content-between align-items-center'>
@@ -48,16 +68,20 @@ export default function Notas() {
                         <tbody>
                             <tr>
                                 <th className="col-8" scope="row" colSpan="3">{('Ceasa - Pescados').toUpperCase()}</th>
-                                <td className="col-4 text-end text-nowrap" colSpan="1"><strong>{('Nº pedido: ').toUpperCase()}</strong>{'00000000.01'}</td>
+                                <td className="col-4 text-end text-nowrap" colSpan="1"><strong>{('Nº pedido: ').toUpperCase()}</strong>{resultado.numeroPedido}</td>
                             </tr>
                             <tr>
-                                <td className="col-3 py-3"><strong>{('Cliente: ').toUpperCase()}</strong>{'Joãozinho'}</td>
-                                <td className="col-5 py-3" colSpan="2"><strong>{('Data: ').toUpperCase()}</strong>{'02/12/2009'}</td>
-                                <td className="col-4 py-3"><div className='d-flex justify-content-end'><Chip label="Não pago" backgroundColor="danger" /></div></td>
+                                <td className="col-3 py-3"><strong>{('Cliente: ').toUpperCase()}</strong>{resultado.cliente}</td>
+                                <td className="col-5 py-3" colSpan="2"><strong>{('Data: ').toUpperCase()}</strong>{resultado.data}</td>
+                                <td className="col-4 py-3">
+                                    <div className='d-flex justify-content-end'>
+                                        <Chip label={resultado.estaPago ? "Pago" : "Não pago"} backgroundColor={resultado.estaPago ? "success" : "danger"} />
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td colSpan={4} className="col-12 p-0 border-0">
-                                    <TabelaProdutos listaProdutos={listaProdutos} />
+                                    <TabelaProdutos listaProdutos={resultado.listaProdutos} totalProdutos={totalProdutos} />
                                 </td>
                             </tr>
                         </tbody>
