@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
+import Botao from '../components/Botao';
 
 const listaProdutos = [
     {
@@ -45,7 +46,7 @@ export default function Notas() {
                             <input type="date" className="form-control" id="data" placeholder="dd/mm/aaaa" />
                         </div>
                         <div className='col-2 d-flex align-items-end'>
-                            <button type="button" className="btn btn-primary w-100">Pesquisar</button>
+                            <Botao label="Pesquisar" color="primary" addClass="w-100" />
                         </div>
                     </div>
                 </div>
@@ -89,7 +90,7 @@ export default function Notas() {
                     </table>
                 </div>
                 <div className='d-flex flex-row justify-content-end w-100 mt-2'>
-                    <button type="button" className="btn btn-outline-primary">Exportar</button>
+                    <Botao label="Exportar" typeButton='outline' color="primary" />
                 </div>
             </div>
         </Layout >
