@@ -80,16 +80,18 @@ export default function Notas() {
                                     </tr>
                                 )
                             })}
-                            <br />
                             <tr>
-                                <td className="col-3 border-0 border-top" colSpan={2}></td>
+                                <td className="col-3 border-0" colSpan={2}></td>
                                 <td className="col-3 border-0 border-top fw-bold">{('Total:').toUpperCase()}</td>
                                 <td className="col-3 border-0 border-top">{somarProdutos(listaProdutos).toFixed(2)}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <div className='d-flex flex-row justify-content-end w-100 mt-2'>
+                    <button type="button" className="btn btn-outline-primary">Exportar</button>
+                </div>
             </div>
-        </Layout>
+        </Layout >
     )
 }
