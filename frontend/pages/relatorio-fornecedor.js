@@ -101,7 +101,7 @@ export default function RelatorioFornecedor() {
                             </tr>
                             <tr>
                                 <td colSpan="3" className="col-9 pt-5 pb-1 fw-bold">{('Valor total a pagar: ').toUpperCase()}</td>
-                                <td className="col-3 pt-5 pb-1">{(totalProdutos - totalCustos).toLocaleString(2, {
+                                <td className="col-3 pt-5 pb-1">{(totalProdutos - totalCustos).toLocaleString('pt-br', {
                                     maximumFractionDigits: 2,
                                     minimumFractionDigits: 2,
                                 })}</td>

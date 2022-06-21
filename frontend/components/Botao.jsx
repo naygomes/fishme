@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Botao({
   label,
-  color = "",
+  color = "primary",
   typeButton = "",
-  addClass,
+  addClass = "",
   onClick,
 }) {
   return (
