@@ -12,7 +12,7 @@ export default function Input({
     <>
       <label htmlFor={htmlFor} className="form-label">
         {label.toUpperCase()}
-        {required ? "*" : ""}
+        <span className="text-danger fw-bold">{required ? "*" : ""}</span>
       </label>
       <input
         type={type}

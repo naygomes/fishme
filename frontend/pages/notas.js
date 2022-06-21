@@ -42,8 +42,7 @@ export default function Notas() {
                             <Input htmlFor={'cliente'} label="Cliente: " required={true} type="text" id="cliente" placeholder="Nome do(a) cliente" />
                         </div>
                         <div className="col-5">
-                            <label htmlFor="data" className="form-label">{('Data: *').toUpperCase()}</label>
-                            <input type="date" className="form-control" id="data" placeholder="dd/mm/aaaa" />
+                            <Input htmlFor={'data'} label="Data: " required={true} type="date" id="data" placeholder="dd/mm/aaaa" />
                         </div>
                         <div className='col-2 d-flex align-items-end'>
                             <Botao label="Pesquisar" color="primary" addClass="w-100" />
