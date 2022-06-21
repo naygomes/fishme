@@ -1,14 +1,9 @@
 import React from "react";
 
-const somarProdutos = (array) => {
-  let resultado = 0;
-  array.forEach((element) => {
-    resultado += element.quantidade * element.precoUnit;
-  });
-  return resultado;
-};
-
-export default function TabelaProdutos({ listaProdutos = [] }) {
+export default function TabelaProdutos({
+  listaProdutos = [],
+  totalProdutos = 0,
+}) {
   return (
     <div className="table-responsive">
       <table className="table m-0">
@@ -34,23 +29,37 @@ export default function TabelaProdutos({ listaProdutos = [] }) {
             return (
               <tr key={item.id}>
                 <td className="col-3 border-0 ">
-                  {item.quantidade.toFixed(2)}
+                  {item.quantidade.toLocaleString("pt-br", {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                  })}
                 </td>
                 <td className="col-3 border-0 ">{item.especie}</td>
-                <td className="col-3 border-0 ">{item.precoUnit.toFixed(2)}</td>
                 <td className="col-3 border-0 ">
-                  {(item.quantidade * item.precoUnit).toFixed(2)}
+                  {item.precoUnit.toLocaleString("pt-br", {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                  })}
+                </td>
+                <td className="col-3 border-0 ">
+                  {(item.quantidade * item.precoUnit).toLocaleString("pt-br", {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                  })}
                 </td>
               </tr>
             );
           })}
           <tr>
-            <td className="col-3 border-0" colSpan={2}></td>
-            <td className="col-3 border-0 border-top fw-bold">
-              {"Total:".toUpperCase()}
+            <td className="pt-3 col-3 border-0" colSpan={2}></td>
+            <td className="pt-3 col-3 border-0 border-top fw-bold">
+              {"Total Produtos:".toUpperCase()}
             </td>
-            <td className="col-3 border-0 border-top">
-              {somarProdutos(listaProdutos).toFixed(2)}
+            <td className="pt-3 col-3 border-0 border-top">
+              {totalProdutos.toLocaleString("pt-br", {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+              })}
             </td>
           </tr>
         </tbody>
