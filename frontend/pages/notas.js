@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import Botao from '../components/Botao';
 import Input from '../components/Input';
+import Chip from '../components/Chip';
 
 const listaProdutos = [
     {
@@ -59,7 +60,7 @@ export default function Notas() {
                             <tr>
                                 <td className="col-3 py-3"><strong>{('Cliente: ').toUpperCase()}</strong>{'Joãozinho'}</td>
                                 <td className="col-4 py-3" colSpan="2"><strong>{('Data: ').toUpperCase()}</strong>{'02/12/2009'}</td>
-                                <td className="col-4 py-3"><div className='d-flex justify-content-end text-light'><div className="bg-danger p-1 px-2 fw-bold nota-chip-status rounded-pill">{('Não Pago').toUpperCase()}</div></div></td>
+                                <td className="col-4 py-3"><div className='d-flex justify-content-end'><Chip label="Não pago" backgroundColor="danger" /></div></td>
                             </tr>
                             <tr>
                                 <td className="col-4 py-3 border-0 fw-bold">{('Detalhes da Compra:').toUpperCase()}</td>

@@ -8,6 +8,7 @@
 @import url(./Sidebar.module.css);
 @import url(./Topbar.module.css);
 @import url(./Input.module.css);
+@import url(./Chip.module.css);
 
 html,
 body {
