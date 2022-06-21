@@ -1,8 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Páginas */
 @import url(./Home.module.css);
+
+/* Componentes */
 @import url(./Sidebar.module.css);
 @import url(./Topbar.module.css);
-@import url(./Notas.module.css);
+@import url(./Input.module.css);
+@import url(./Chip.module.css);
+@import url(./TabelaProdutos.css);
 
 html,
 body {
@@ -21,4 +27,8 @@ a {
 * {
   box-sizing: border-box;
   font-family: 'Mulish', sans-serif;
+}
+
+table {
+  font-size: 0.9rem;
 }
