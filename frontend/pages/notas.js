@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import Botao from '../components/Botao';
+import Input from '../components/Input';
 
 const listaProdutos = [
     {
@@ -38,8 +39,7 @@ export default function Notas() {
                 <div className="card w-100 mb-5">
                     <div className="card-body row justify-content-end">
                         <div className="col-5">
-                            <label htmlFor="cliente" className="form-label">{('Cliente: *').toUpperCase()}</label>
-                            <input type="text" className="form-control" id="cliente" placeholder="Nome da Cliente" />
+                            <Input htmlFor={'cliente'} label="Cliente: " required={true} type="text" id="cliente" placeholder="Nome do(a) cliente" />
                         </div>
                         <div className="col-5">
                             <label htmlFor="data" className="form-label">{('Data: *').toUpperCase()}</label>
