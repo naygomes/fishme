@@ -58,6 +58,9 @@ export default function Cobranca() {
                   <th scope="col">Valor Restante (R$)</th>
                   <th scope="col">Dias de atraso</th>
                   <th scope="col">Status</th>
+                  <th scope="col">
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -71,6 +74,11 @@ export default function Cobranca() {
                       />
                     );
                   })}
+                  <td className="text-center">
+                    <button type="button" className="btn btn-outline-primary">
+                      Pagou?
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>

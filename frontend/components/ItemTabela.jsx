@@ -6,7 +6,7 @@ function ItemTabela(props) {
     return null;
   } else if (props.chave === "status") {
     return <StatusTabela status={props.item} />;
-  } else {
+  } else if (props.chave !== "cliente") {
     return <td>{props.item}</td>;
   }
 }
