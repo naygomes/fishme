@@ -6,7 +6,7 @@ const Layout = ({ children, title }) => {
   return (
     <div className="h-100 d-flex flex-row justify-content-start">
       <Sidebar />
-      <div className="h-100 bg-light flex-fill p-5 text-dark col offset-2">
+      <div className="bg-light flex-fill p-5 text-dark ">
         <Topbar name="Fernando Ruas">{title}</Topbar>
         <div>{children}</div>
       </div>
