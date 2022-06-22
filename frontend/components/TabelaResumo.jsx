@@ -18,16 +18,24 @@ export default function TabelaResumo({ label = "", data = {}, dataType = "" }) {
                         index === Object.values(data).length - 1
                           ? "border-0"
                           : ""
-                      } ${item.color ? "text-" + item.color : ""}`}
+                      } ${
+                        item.color && label === "Resumo das cobranças"
+                          ? "text-" + item.color
+                          : ""
+                      }`}
                     >
                       {item.label}
                     </td>
                     <td
-                      className={`col-3 p-3 m-0 text-end text-black-50 ${
+                      className={`col-3 p-3 m-0 text-end ${
                         index === Object.values(data).length - 1
                           ? "border-0"
                           : ""
-                      } ${item.color ? "text-" + item.color : ""}`}
+                      } text-${
+                        item.color && label === "Resumo das cobranças"
+                          ? item.color
+                          : "black-50"
+                      }`}
                     >
                       {dataType === "currency" && "R$ "}
                       {item.value.toLocaleString("pt-br", {
