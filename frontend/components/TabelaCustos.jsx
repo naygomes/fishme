@@ -30,7 +30,7 @@ export default function TabelaCustos({ listaCustos = [], totalCustos = 0 }) {
                   {labelCustos[item] + " (R$)"}
                 </td>
                 <td className="col-3">
-                  {listaCustos[item].toLocaleString(2, {
+                  {listaCustos[item].toLocaleString("pt-br", {
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
                   })}
