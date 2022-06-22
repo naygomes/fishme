@@ -9,7 +9,7 @@ export default function Input({
   placeholder,
 }) {
   return (
-    <>
+    <div className="d-flex flex-column">
       <label htmlFor={htmlFor} className="form-label">
         {label?.toUpperCase()}
         <span className="text-danger fw-bold">{required ? "*" : ""}</span>
@@ -20,6 +20,6 @@ export default function Input({
         id={id}
         placeholder={placeholder}
       />
-    </>
+    </div>
   );
 }
