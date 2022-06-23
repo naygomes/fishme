@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { Modal } from "react-bootstrap";
 import Layout from "../components/Layout";
 import Input from "../components/Input";
 import Lixeira from "../components/icones/Lixeira";
 
 export default function RegistrarDivida() {
+  const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [data, setData] = useState({});
   const [novoProduto, setNovoProduto] = useState({
     _id: null,
     especie: "",
@@ -16,18 +22,21 @@ export default function RegistrarDivida() {
     2: { _id: 2, peso: "14.00", especie: "Dourado", preco_unitario: "20.00" },
   });
 
-  function handleChange(evt) {
+  const handleChange = (evt) => {
     const value = evt.target.value;
+    const id = evt.target.id;
     const produtosList = Object.values(produtos);
-    setNovoProduto({
-      ...novoProduto,
-      [evt.target.id]: value,
-      _id:
-        produtosList.length !== 0
-          ? produtosList[produtosList.length - 1]?._id + 1
-          : 0,
-    });
-  }
+    id === "especie" || id === "peso" || id === "preco"
+      ? setNovoProduto({
+          ...novoProduto,
+          [evt.target.id]: value,
+          _id:
+            produtosList.length !== 0
+              ? produtosList[produtosList.length - 1]?._id + 1
+              : 0,
+        })
+      : setData({ ...data, [evt.target.id]: value });
+  };
 
   const handleAdd = () => {
     setProdutos({ ...produtos, [novoProduto._id]: novoProduto });
@@ -45,12 +54,41 @@ export default function RegistrarDivida() {
     setProdutos(xProdutos);
   };
 
+  const hitPost = (data) => {
+    axios
+      .post("", data)
+      .then(function (response) {
+        setSuccess(true);
+        handleOpen();
+      })
+      .catch(function (error) {
+        setSuccess(false);
+        handleOpen(error);
+      });
+  };
+
+  const handleSend = () => {
+    const xData = { ...data, produtos: { ...produtos } };
+    hitPost(xData);
+  };
+
+  const handleOpen = (error) => {
+    setModalOpen(true);
+    setMessage(error ? error.message : "Dívida registrada com sucesso!");
+  };
+
+  const handleClose = () => {
+    setModalOpen(false);
+  };
+
   return (
     <Layout title="Registrar Dívida">
       <div className="container">
         <div className="row w-100">
           <div className="col-lg-6 col-sm-6 col-md-6">
             <Input
+              handleChange={handleChange}
+              value={data.cliente}
               htmlFor={"cliente"}
               label="Cliente: "
               required={true}
@@ -62,6 +100,8 @@ export default function RegistrarDivida() {
 
           <div className="col-lg-6 col-sm-6 col-md-6">
             <Input
+              handleChange={handleChange}
+              value={data.data}
               htmlFor={"data"}
               label="Data: "
               required={true}
@@ -161,6 +201,8 @@ export default function RegistrarDivida() {
         <div className="row ">
           <div className="col-lg-4 col-sm-4 col-md-4 mt-3">
             <Input
+              handleChange={handleChange}
+              value={data.valorpago}
               htmlFor={"valorpago"}
               label="Qual o valor que já foi pago pelo cliente?"
               required={true}
@@ -170,11 +212,21 @@ export default function RegistrarDivida() {
           </div>
         </div>
         <div className="d-flex flex-row justify-content-end w-100 mt-2">
-          <button type="button" className="btn btn-primary w-25">
+          <button
+            onClick={handleSend}
+            type="button"
+            className="btn btn-primary w-25"
+          >
             Registrar
           </button>
         </div>
       </div>
+      <Modal show={modalOpen} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>{success ? "Sucesso" : "Erro"}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{message}</Modal.Body>
+      </Modal>
     </Layout>
   );
 }
