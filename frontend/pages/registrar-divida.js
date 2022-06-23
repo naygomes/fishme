@@ -1,13 +1,49 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import Input from "../components/Input";
+import Lixeira from "../components/icones/Lixeira";
 
 export default function RegistrarDivida() {
-  const [produtos, setProdutos] = useState([
-    { peso: "14.00", especie: "Corvina", preco_unitario: "15.00" },
-    { peso: "64.00", especie: "Sardinha", preco_unitario: "9.00" },
-    { peso: "14.00", especie: "Dourado", preco_unitario: "20.00" },
-  ]);
+  const [novoProduto, setNovoProduto] = useState({
+    _id: null,
+    especie: "",
+    peso: "",
+    preco: "",
+  });
+  const [produtos, setProdutos] = useState({
+    0: { _id: 0, peso: "14.00", especie: "Corvina", preco_unitario: "15.00" },
+    1: { _id: 1, peso: "64.00", especie: "Sardinha", preco_unitario: "9.00" },
+    2: { _id: 2, peso: "14.00", especie: "Dourado", preco_unitario: "20.00" },
+  });
+
+  function handleChange(evt) {
+    const value = evt.target.value;
+    const produtosList = Object.values(produtos);
+    setNovoProduto({
+      ...novoProduto,
+      [evt.target.id]: value,
+      _id:
+        produtosList.length !== 0
+          ? produtosList[produtosList.length - 1]?._id + 1
+          : 0,
+    });
+  }
+
+  const handleAdd = () => {
+    setProdutos({ ...produtos, [novoProduto._id]: novoProduto });
+    setNovoProduto({
+      _id: null,
+      especie: "",
+      peso: "",
+      preco: "",
+    });
+  };
+
+  const handleDelete = (id) => {
+    let xProdutos = { ...produtos };
+    delete xProdutos[id];
+    setProdutos(xProdutos);
+  };
 
   return (
     <Layout title="Registrar Dívida">
@@ -43,6 +79,8 @@ export default function RegistrarDivida() {
         <div className="row w-100 align-items-end">
           <div className="col-lg col-sm col-md">
             <Input
+              handleChange={handleChange}
+              value={novoProduto.especie}
               htmlFor={"especie"}
               label="Espécie: "
               required={true}
@@ -54,6 +92,8 @@ export default function RegistrarDivida() {
 
           <div className="col-lg col-sm col-md">
             <Input
+              handleChange={handleChange}
+              value={novoProduto.peso}
               htmlFor={"peso"}
               label="Peso (KG): "
               required={true}
@@ -64,6 +104,8 @@ export default function RegistrarDivida() {
 
           <div className="col-lg col-sm col-md">
             <Input
+              handleChange={handleChange}
+              value={novoProduto.preco}
               htmlFor={"preco"}
               label="Preço unitário (R$): "
               required={true}
@@ -73,7 +115,11 @@ export default function RegistrarDivida() {
           </div>
 
           <div className="col-lg-2 col-sm-2 col-md-2 h-100">
-            <button type="button" className="btn btn-outline-primary w-100">
+            <button
+              onClick={handleAdd}
+              type="button"
+              className="btn btn-outline-primary w-100"
+            >
               Adicionar
             </button>
           </div>
@@ -88,12 +134,25 @@ export default function RegistrarDivida() {
             </tr>
           </thead>
           <tbody>
-            {produtos.map((item, idx) => {
+            {Object.values(produtos).map((item, idx) => {
               return (
                 <tr key={idx}>
-                  {Object.values(item).map((xItem, index) => {
-                    return <td key={index}>{xItem}</td>;
+                  {Object.keys(item).map((xKey, index) => {
+                    if (xKey !== "_id") {
+                      return <td key={index}>{item[xKey]}</td>;
+                    }
                   })}
+                  <td>
+                    <button
+                      onClick={() => handleDelete(item._id)}
+                      type="button"
+                      className="btn btn-danger btn-sm"
+                    >
+                      <span className="btn-label">
+                        <Lixeira />
+                      </span>
+                    </button>
+                  </td>
                 </tr>
               );
             })}
