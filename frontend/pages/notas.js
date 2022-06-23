@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import Pdf from "react-to-pdf";
+
+// Componentes
 import Layout from '../components/Layout';
 import Botao from '../components/Botao';
 import Input from '../components/Input';
 import Chip from '../components/Chip';
 import TabelaProdutos from '../components/TabelaProdutos';
+
+const ref = React.createRef();
+
+const options = {
+    orientation: 'landscape',
+    unit: 'in',
+};
 
 const somarProdutos = (array) => {
     let resultado = 0;
@@ -63,7 +73,7 @@ export default function Notas() {
                         </div>
                     </div>
                 </div>
-                <div className="table-responsive w-100">
+                <div ref={ref} className="table-responsive w-100">
                     <table className="table">
                         <tbody>
                             <tr>
@@ -72,9 +82,9 @@ export default function Notas() {
                             </tr>
                             <tr>
                                 <td className="col-3 py-3"><strong>{('Cliente: ').toUpperCase()}</strong>{resultado.cliente}</td>
-                                <td className="col-5 py-3" colSpan="2"><strong>{('Data: ').toUpperCase()}</strong>{resultado.data}</td>
-                                <td className="col-4 py-3">
-                                    <div className='d-flex justify-content-end'>
+                                <td className="col-6 py-3" colSpan="2"><strong>{('Data: ').toUpperCase()}</strong>{resultado.data}</td>
+                                <td className="col-3 py-3">
+                                    <div className='d-flex justify-content-end w-50'>
                                         <Chip label={resultado.estaPago ? "Pago" : "Não pago"} backgroundColor={resultado.estaPago ? "success" : "danger"} />
                                     </div>
                                 </td>
@@ -88,7 +98,9 @@ export default function Notas() {
                     </table>
                 </div>
                 <div className='d-flex flex-row justify-content-end w-100 mt-2'>
-                    <Botao label="Exportar" typeButton='outline' color="primary" />
+                    <Pdf targetRef={ref} filename="notas.pdf" options={options} x={.5} y={.5} scale={0.65}>
+                        {({ toPdf }) => <Botao label="Exportar" typeButton='outline' color="primary" onClick={toPdf} />}
+                    </Pdf>
                 </div>
             </div>
         </Layout >

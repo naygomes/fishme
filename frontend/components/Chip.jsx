@@ -7,7 +7,7 @@ export default function Chip({
 }) {
   return (
     <div
-      className={`bg-${backgroundColor} p-1 px-2 fw-bold chip-status rounded-pill text-${color} w-100 text-center`}
+      className={`bg-${backgroundColor} p-1 px-2 fw-bold chip-status rounded-pill text-${color} w-100 text-center text-nowrap`}
     >
       {label?.toUpperCase()}
     </div>

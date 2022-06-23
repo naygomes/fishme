@@ -5,6 +5,14 @@ import Input from '../components/Input';
 import Chip from '../components/Chip';
 import TabelaProdutos from '../components/TabelaProdutos';
 import TabelaCustos from '../components/TabelaCustos';
+import Pdf from "react-to-pdf";
+
+const ref = React.createRef();
+
+const options = {
+    orientation: 'landscape',
+    unit: 'in',
+};
 
 const somarProdutos = (array) => {
     let resultado = 0;
@@ -81,7 +89,7 @@ export default function RelatorioFornecedor() {
                         </div>
                     </div>
                 </div>
-                <div className="table-responsive w-100">
+                <div ref={ref} className="table-responsive w-100">
                     <table className="table">
                         <tbody>
                             <tr>
@@ -111,7 +119,9 @@ export default function RelatorioFornecedor() {
                     </table>
                 </div>
                 <div className='d-flex flex-row justify-content-end w-100 mt-2'>
-                    <Botao label="Exportar" typeButton='outline' color="primary" />
+                    <Pdf targetRef={ref} filename="relatorio-fornecedor.pdf" options={options} x={.5} y={.5} scale={0.8}>
+                        {({ toPdf }) => <Botao label="Exportar" typeButton='outline' color="primary" onClick={toPdf} />}
+                    </Pdf>
                 </div>
             </div>
         </Layout >
