@@ -7,6 +7,8 @@ export default function Input({
   type,
   id,
   placeholder,
+  value,
+  handleChange,
 }) {
   return (
     <div className="d-flex flex-column">
@@ -15,6 +17,8 @@ export default function Input({
         <span className="text-danger fw-bold">{required ? "*" : ""}</span>
       </label>
       <input
+        onChange={handleChange}
+        value={value}
         type={type}
         className="form-control"
         id={id}

@@ -1,8 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Layout from "../components/Layout";
 import ItemTabela from "../components/ItemTabela";
+import Input from "../components/Input";
+import { Modal, Button } from "react-bootstrap";
 
 export default function Cobranca() {
+  const [modalOpen, setModalOpen] = useState(false);
   const cobrancas = {
     0: {
       id: 0,
@@ -41,6 +44,14 @@ export default function Cobranca() {
       status: 2,
     },
   };
+
+  const handleClick = (id) => {
+    setModalOpen(true);
+  };
+
+  const handleClose = () => {
+    setModalOpen(false);
+  };
   return (
     <Layout title={"Cobranças"}>
       {Object.values(cobrancas).map((cobranca, index) => {
@@ -75,13 +86,41 @@ export default function Cobranca() {
                     );
                   })}
                   <td className="text-center">
-                    <button type="button" className="btn btn-outline-primary">
+                    <button
+                      type="button"
+                      className="btn btn-outline-primary"
+                      onClick={() => handleClick(cobranca.id)}
+                    >
                       Pagou?
                     </button>
                   </td>
                 </tr>
               </tbody>
             </table>
+            <Modal show={modalOpen} onHide={handleClose} centered>
+              <Modal.Header closeButton>
+                <Modal.Title>O cliente pagou?</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Insira o valor pago:
+                <div style={{ height: "16px" }}></div>
+                <Input
+                  htmlFor={"valorpago"}
+                  label="Valor pago: "
+                  required={true}
+                  type="text"
+                  id="valorpago"
+                />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="outlined" onClick={handleClose}>
+                  Cancelar
+                </Button>
+                <Button variant="primary" onClick={handleClose}>
+                  Salvar
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </Fragment>
         );
       })}
