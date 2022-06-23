@@ -43,22 +43,22 @@ export default function RegistrarDivida() {
         <div className="row w-100 align-items-end">
           <div className="col-lg col-sm col-md">
             <Input
-              htmlFor={"peso"}
-              label="Peso (KG): "
-              required={true}
-              type="text"
-              id="peso"
-            />
-          </div>
-
-          <div className="col-lg col-sm col-md">
-            <Input
               htmlFor={"especie"}
               label="Espécie: "
               required={true}
               type="text"
               id="especie"
               placeholder="Nome da espécie"
+            />
+          </div>
+
+          <div className="col-lg col-sm col-md">
+            <Input
+              htmlFor={"peso"}
+              label="Peso (KG): "
+              required={true}
+              type="text"
+              id="peso"
             />
           </div>
 
