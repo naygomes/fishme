@@ -2,18 +2,9 @@ import { useState, useMemo } from "react";
 import { useRouter } from "next/router";
 
 import Link from "next/link";
-import {
-  Logo,
-  Grafico,
-  Ticket,
-  Lampada,
-  Pessoas,
-  Livro,
-  Cifrao,
-  Nota,
-} from "./icones";
+import { Logo, Grafico, Ticket, Pessoas, Livro, Cifrao, Nota } from "./icones";
 
-const Sidebar = ({ classExtra }) => {
+const Sidebar = () => {
   const [menuItens, setMenuItens] = useState({
     1: {
       id: 1,
@@ -31,34 +22,27 @@ const Sidebar = ({ classExtra }) => {
     },
     3: {
       id: 3,
-      label: "Produtos",
-      icon: Lampada,
-      link: "/produtos",
-      estaSelecionado: false,
-    },
-    4: {
-      id: 4,
       label: "Relatório ao Fornecedor",
       icon: Pessoas,
       link: "/relatorio-fornecedor",
       estaSelecionado: false,
     },
-    5: {
-      id: 5,
+    4: {
+      id: 4,
       label: "Notas",
       icon: Livro,
       link: "/notas",
       estaSelecionado: false,
     },
-    6: {
-      id: 6,
+    5: {
+      id: 5,
       label: "Registrar Dívida",
       icon: Cifrao,
       link: "/registrar-divida",
       estaSelecionado: false,
     },
-    7: {
-      id: 7,
+    6: {
+      id: 6,
       label: "Registrar pag. ao Fornecedor",
       icon: Nota,
       link: "/registrar-pagamento",
