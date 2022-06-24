@@ -1,8 +1,17 @@
 import React, { Fragment } from "react";
 import Layout from "../components/Layout";
 import ItemTabela from "../components/ItemTabela";
+import axios from 'axios';
+import { API_URL } from "./api/hello";
+
 
 export default function Cobranca() {
+
+  const darBaixa = id => {
+    //axios.put(`${API_URL}/vendas/updateBaixa/${id}`);
+  }
+
+
   const cobrancas = {
     0: {
       id: 0,
@@ -75,7 +84,7 @@ export default function Cobranca() {
                     );
                   })}
                   <td className="text-center">
-                    <button type="button" className="btn btn-outline-primary">
+                    <button type="button" className="btn btn-outline-primary" onClick={() => darBaixa(cobranca.id)}>
                       Pagou?
                     </button>
                   </td>
