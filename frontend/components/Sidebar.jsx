@@ -75,7 +75,7 @@ const Sidebar = () => {
     >
       <div className="px-4 d-flex align-items-center pl-1 gap-3">
         <Logo size={32} />
-        <span className="logo-text">Fishme</span>
+        <span className="logo-text">FishMe</span>
       </div>
       <div className="mt-5 d-flex flex-column justify-content-between ">
         {Object.values(menuItens).map(({ icon: Icon, ...menu }) => {
