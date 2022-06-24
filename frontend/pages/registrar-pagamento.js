@@ -3,10 +3,42 @@ import Layout from "../components/Layout";
 import Input from "../components/Input";
 
 export default function RegistrarPagamento() {
+
+  const [relFornecedor, setRelFornecedor] = useState({
+      fornecedorName: "",
+      produtos: {},
+      valorTotalVendido: 0,
+      comissao: 0,
+      taxa: 0,
+      carreto: 0,
+      frete: 0,
+      outros: 0,
+      totalAPagar:0
+    }
+  )
+
+  const handleRegister = e => {
+    console.log(relFornecedor);
+  }
+
+  const handleInputChange = e => {
+    console.log(e.target.name);
+    setRelFornecedor({ [e.target.name]: e.target.value });
+  };
+
+  const addProduto = e => {
+    let peso = document.getElementById("peso").value;
+    let nome = document.getElementById("especie").value;
+    let preco = document.getElementById("preco").value;
+
+    let novoProduto = { quantidade:peso, name:nome, precoUnit:preco};
+    setProdutos([...produtos, novoProduto]);
+  }
+
   const [produtos, setProdutos] = useState([
-    { peso: "14.00", especie: "Corvina", preco_unitario: "15.00" },
-    { peso: "64.00", especie: "Sardinha", preco_unitario: "9.00" },
-    { peso: "14.00", especie: "Dourado", preco_unitario: "20.00" },
+    { quantidade: "14.00", name: "Corvina", precoUnit: "15.00" },
+    { quantidade: "64.00", name: "Sardinha", precoUnit: "9.00" },
+    { quantidade: "14.00", name: "Dourado", precoUnit: "20.00" },
   ]);
 
   return (
@@ -15,6 +47,7 @@ export default function RegistrarPagamento() {
         <div className="row w-100">
           <div className="col-lg-6 col-sm-6 col-md-6">
             <Input
+              //onChange={e => handleInputChange(e)}
               htmlFor={"fornecedor"}
               label="Fornecedor: "
               required={true}
@@ -26,6 +59,7 @@ export default function RegistrarPagamento() {
 
           <div className="col-lg-6 col-sm-6 col-md-6">
             <Input
+              //onChange={e => handleInputChange(e)}
               htmlFor={"data"}
               label="Data: "
               required={true}
@@ -73,7 +107,7 @@ export default function RegistrarPagamento() {
           </div>
 
           <div className="col-lg-2 col-sm-2 col-md-2 h-100">
-            <button type="button" className="btn btn-outline-primary w-100">
+            <button type="button" className="btn btn-outline-primary w-100" onClick={e => addProduto(e)}>
               Adicionar
             </button>
           </div>
@@ -106,35 +140,39 @@ export default function RegistrarPagamento() {
         <div className="row">
           <div className="col-lg-4 col-sm-4 col-md-4">
             <Input
+              onChange={e => handleInputChange(e)}
               htmlFor={"comissoes"}
               label="Comissões (R$)"
               required={true}
               type="text"
-              id="comissoes"
+              id="comissao"
             />
           </div>
           <div className="col-lg-4 col-sm-4 col-md-4">
             <Input
+              onChange={e => handleInputChange(e)}
               htmlFor={"taxas"}
               label="Taxas (R$)"
               required={true}
               type="text"
-              id="taxas"
+              id="taxa"
             />
           </div>
           <div className="col-lg-4 col-sm-4 col-md-4">
             <Input
+              onChange={e => handleInputChange(e)}
               htmlFor={"carretos"}
               label="Carretos (R$)"
               required={true}
               type="text"
-              id="carretos"
+              id="carreto"
             />
           </div>
         </div>
         <div className="row my-4">
           <div className="col-lg-4 col-sm-4 col-md-4">
             <Input
+              onChange={e => handleInputChange(e)}
               htmlFor={"frete"}
               label="Frete (R$)"
               required={true}
@@ -144,6 +182,7 @@ export default function RegistrarPagamento() {
           </div>
           <div className="col-lg-4 col-sm-4 col-md-4">
             <Input
+              onChange={e => handleInputChange(e)}
               htmlFor={"gelo"}
               label="Gelo (R$)"
               required={true}
@@ -153,6 +192,7 @@ export default function RegistrarPagamento() {
           </div>
           <div className="col-lg-4 col-sm-4 col-md-4">
             <Input
+              onChange={e => handleInputChange(e)}
               htmlFor={"outros"}
               label="Outros (R$)"
               required={true}
@@ -162,7 +202,7 @@ export default function RegistrarPagamento() {
           </div>
         </div>
         <div className="d-flex flex-row justify-content-end w-100 mt-4">
-          <button type="button" className="btn btn-primary w-25">
+          <button type="button" className="btn btn-primary w-25" onClick={(e) => handleRegister(e)}>
             Registrar
           </button>
         </div>
