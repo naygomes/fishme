@@ -1,8 +1,34 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import ItemTabela from "../components/ItemTabela";
+import axios from 'axios';
 
 export default function Cobranca() {
+
+  const baseApi = "http://localhost:3333";
+
+  let cobrancasPuxadas = [];
+  const [success, setSuccess] = useState(false);
+  //const [message, setMessage] = useState("");
+  const getCobrancas = () => {
+    axios
+      .get(baseApi + '/vendas/getEmAberto')
+      .then(function (response) {
+        cobrancasPuxadas = 
+        console.log(response);
+        setSuccess(true);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setSuccess(false);
+      });
+  };
+
+  useEffect(() => {
+    getCobrancas();
+  }) 
+
+
   const cobrancas = {
     0: {
       id: 0,
@@ -43,7 +69,7 @@ export default function Cobranca() {
   };
   return (
     <Layout title={"Cobranças"}>
-      {Object.values(cobrancas).map((cobranca, index) => {
+      {Object.values(cobrancasPuxadas).map((cobranca, index) => {
         return (
           <Fragment key={index}>
             <p>Cliente: {cobranca.cliente}</p>
